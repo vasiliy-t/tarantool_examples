@@ -1,0 +1,6 @@
+dependencies:
+- name: tarantool-operator
+  repository: https://tarantool.github.io/tarantool-operator
+  version: 0.0.6
+digest: sha256:45d3af4c8220f98ef7f90c3ef20f9970262a163924ca7763d27fd5d517606f4f
+generated: "2020-10-06T11:32:09.021084+03:00"

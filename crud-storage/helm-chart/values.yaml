@@ -3,8 +3,6 @@
 ClusterEnv: dev
 ClusterName: tarantool-crud
 
-namespace: tarantool
-
 image:
   repository: vasiliyt/tarantool-crud
   tag: 0.0.2
