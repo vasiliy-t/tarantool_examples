@@ -1,4 +1,4 @@
-package = 'crud'
+package = 'crud-storage'
 version = 'scm-1'
 source  = {
 	url = '/dev/null',
