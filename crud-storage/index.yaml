@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  crud-storage:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-10-06T11:08:32.001386+03:00"
+    description: A Helm chart for Tarantool CRUD
+    digest: 74c47db4d5fc882c715331dce5f86a5f0d29098abc46519ddccbbdd365ff069b
+    name: crud-storage
+    urls:
+    - https://github.com/vasiliy-t/tarantool_examples/releases/download/crud-storage-0.0.1/crud-storage-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-10-06T11:08:31.707313+03:00"
