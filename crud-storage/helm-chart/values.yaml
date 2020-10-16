@@ -5,7 +5,7 @@ ClusterName: tarantool-crud
 
 image:
   repository: vasiliyt/tarantool-crud
-  tag: 0.0.2
+  tag: 0.0.3
   pullPolicy: IfNotPresent
 
 service:
@@ -27,3 +27,4 @@ RoleConfig:
       - crud-storage
       - vshard-router
       - metrics
+      - migrator

@@ -33,9 +33,14 @@ local ok, err = cartridge.cfg({
         'cartridge.roles.vshard-storage',
         'cartridge.roles.vshard-router',
         'cartridge.roles.metrics',
-        'cartridge.roles.crud-storage'
+        'cartridge.roles.crud-storage',
+        'migrator'
     },
     cluster_cookie = 'myapp-cluster-cookie',
 })
 
 assert(ok, tostring(err))
+
+local migrator = require('migrator')
+local config_loader = require('migrator.config-loader').new()
+migrator.set_loader(config_loader)
