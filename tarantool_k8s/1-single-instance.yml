@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tarantool
+  labels:
+    app: tarantool
+spec:
+  ports:
+  - port: 3301
+    name: bin
+  clusterIP: None
+  selector:
+    app: tarantool
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tarantool
+spec:
+  selector:
+    matchLabels:
+      app: tarantool
+  serviceName: "tarantool"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tarantool
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: tarantool
+        image: tarantool/tarantool:2.4
+        ports:
+        - containerPort: 3301
+          name: bin
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/tarantool
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
