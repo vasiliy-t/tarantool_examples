@@ -11,5 +11,5 @@
 1. install CRUD storage
 
   ```shell
-  $ helm install crud tarantool-examples/crud-storage --namespace=tarantool --create-namespace --version 0.0.3
+  $ helm install crud tarantool-examples/crud-storage --namespace=tarantool --create-namespace --version 0.0.4
   ```
