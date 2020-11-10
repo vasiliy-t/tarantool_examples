@@ -11,7 +11,7 @@
 1. install CRUD storage
 
     ```shell
-    $ helm install crud tarantool-examples/crud-storage --namespace=tarantool --create-namespace --version 0.0.4
+    $ helm install crud tarantool-examples/crud-storage --version 0.0.4
     ```
 
 1. apply migrations
