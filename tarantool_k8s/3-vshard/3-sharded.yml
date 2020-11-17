@@ -55,7 +55,7 @@ spec:
           name: vshard
       - name: app
         configMap:
-          name: app
+          name: sharded
   volumeClaimTemplates:
   - metadata:
       name: data

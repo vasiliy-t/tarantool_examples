@@ -11,13 +11,13 @@ This example show how to deploy basic vshard'ed tarantool with default docker im
 1. create app as config
 
     ```shell
-    kubectl create cm --from-file app.lua app
+    kubectl create cm --from-file app.lua sharded
     ```
 
 1. deploy 
 
     ```shell
-    kubectl create -f 3-sharded.yml
+    kubectl apply -f 3-sharded.yml
     ```
 
 1. wait for instances to start

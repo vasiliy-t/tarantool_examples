@@ -3,7 +3,11 @@
 ### Single instance
 
 ```shell
-kubectl create -f 1-single-instance.yml
+kubectl create cm --from-file app.lua app
+```
+
+```shell
+kubectl apply -f 1-single-instance.yml
 ```
 
 Drawbacks:
@@ -17,7 +21,7 @@ Drawbacks:
 ### Single instance with replication
 
 ```shell
-kubectl cretate -f 2-master-master.yml
+kubectl apply -f 2-master-master.yml
 ```
 
 The trick is to set proper `TARANTOOL_REPLICATION` env variable pointing to instance DNS name within kubernetes service. 

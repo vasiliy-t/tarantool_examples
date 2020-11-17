@@ -20,3 +20,4 @@ local vshard = require("vshard")
 log.info(type(box.cfg))
 
 vshard.storage.cfg(cfg, my_uuid)
+box.schema.user.grant('guest', 'read,write,execute,create', 'universe', nil, {if_not_exists = true})

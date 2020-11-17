@@ -31,12 +31,25 @@ spec:
       containers:
       - name: tarantool
         image: tarantool/tarantool:2.4
+        env:
+          - name: "TARANTOOL_INSTANCE_NAME"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        args: ["tarantool", "/opt/tarantool/app.lua"]
         ports:
         - containerPort: 3301
           name: bin
         volumeMounts:
         - name: data
           mountPath: /var/lib/tarantool
+        - name: app
+          mountPath: /opt/tarantool/app.lua
+          subPath: app.lua
+      volumes:
+      - name: app
+        configMap:
+          name: app
   volumeClaimTemplates:
   - metadata:
       name: data
