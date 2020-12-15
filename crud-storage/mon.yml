@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: tarantool-service-monitor
+spec:
+  jobLabel: tarantool-monitoring
+  selector:
+    matchExpressions:
+      - key: tarantool.io/role
+        operator: In
+        values:
+        - storage
+  namespaceSelector:
+    matchNames:
+    - default
+  endpoints:
+  - port: web
+    relabelings:
+      - targetLabel: job
+        replacement: tarantool-monitoring
+        action: replace
+

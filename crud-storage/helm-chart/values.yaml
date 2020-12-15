@@ -4,8 +4,8 @@ ClusterEnv: dev
 ClusterName: tarantool-crud
 
 image:
-  repository: vasiliyt/tarantool-crud
-  tag: 0.0.3
+  repository: vasiliyt/myapp
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 service:
@@ -18,13 +18,15 @@ Prometheus:
 
 RoleConfig:
   - RoleName: storage
-    ReplicaCount: 1
-    ReplicaSetCount: 3
+    ReplicaCount: 2
+    ReplicaSetCount: 2
     DiskSize: 1Gi
     CPUallocation: 0.25
     MemtxMemoryMB: 256
     RolesToAssign:
-      - crud-storage
+      - vshard-storage
       - vshard-router
       - metrics
+      - crud-storage
+      - crud-router
       - migrator

@@ -14,9 +14,3 @@ assert(instance_name)
 assert(instances[instance_name])
 
 box.cfg(instances[instance_name])
-
-box.schema.create_space("demo", {if_not_exists = true})
-
-box.space.demo:format({{name="id", type="number"}, {name="value", type="string"}})
-
-box.space.demo:create_index("pk", {parts={"id"}, if_not_exists=true})

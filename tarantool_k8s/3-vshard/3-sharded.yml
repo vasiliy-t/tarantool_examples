@@ -36,23 +36,70 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-        args: ["tarantool", "/opt/tarantool/app.lua"]
+        command:
+          - "tarantool"
+        args:
+          - /opt/tarantool/app.lua
         ports:
         - containerPort: 3301
           name: bin
         volumeMounts:
         - name: data
           mountPath: /var/lib/tarantool
-        - name: vshard
-          mountPath: /opt/tarantool/vshard_config.lua
-          subPath: vshard_config.lua
         - name: app
           mountPath: /opt/tarantool/app.lua
           subPath: app.lua
       volumes:
-      - name: vshard
+      - name: app
         configMap:
-          name: vshard
+          name: sharded
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tarantool-1
+spec:
+  selector:
+    matchLabels:
+      app: tarantool
+  serviceName: "tarantool"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: tarantool
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: tarantool
+        image: tarantool/tarantool:2.4
+        env:
+          - name: "TARANTOOL_INSTANCE_NAME"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        command:
+          - "tarantool"
+        args:
+          - /opt/tarantool/app.lua
+        ports:
+        - containerPort: 3301
+          name: bin
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/tarantool
+        - name: app
+          mountPath: /opt/tarantool/app.lua
+          subPath: app.lua
+      volumes:
       - name: app
         configMap:
           name: sharded

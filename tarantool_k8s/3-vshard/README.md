@@ -2,12 +2,6 @@
 
 This example show how to deploy basic vshard'ed tarantool with default docker image and few configs.
 
-1. create vshard config
-
-    ```shell
-    kubectl create cm --from-file vshard_config.lua vshard
-    ```
-
 1. create app as config
 
     ```shell
@@ -29,5 +23,11 @@ kubectl exec -it tarantool-0 -- sh
 ```
 
 ```shell
+tarantoolctl connect tarantool-0.tarantool.default.svc.cluster.local:3301
+```
 
+```lua
+vshard = require("vshard")
+vshard.router.cfg(require("vshard_config"))
+vshard.router.bootstrap()
 ```

@@ -78,7 +78,7 @@ spec:
           image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
           volumeMounts:
             - name: www
-              mountPath: "/data"
+              mountPath: "/var/lib/tarantool"
           resources:
             requests:
               cpu: "{{ .CPUallocation }}"
