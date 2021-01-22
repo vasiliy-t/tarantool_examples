@@ -5,7 +5,7 @@ ClusterName: tarantool-crud
 
 image:
   repository: vasiliyt/myapp
-  tag: 0.1.0
+  tag: 0.2.0
   pullPolicy: IfNotPresent
 
 service:
