@@ -1,5 +1,11 @@
 ### CRUD storage
 
+1. install Helm dependencies
+
+    ```shell
+     helm dependency build helm-chart/
+     ```
+
 1. install CRUD storage
 
     ```shell
